@@ -42,8 +42,8 @@
 	
 	{{template "head" .}}
   </head>
-  <body style="background-color: #f2f2f2">
-    <nav class="navbar navbar-static-top" style="background-color:#212121 !important">
+  <body>
+    <!-- <nav class="navbar navbar-static-top" style="background-color:#212121 !important">
       <div class="container-fluid" >
         <div class="navbar-header">
           <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -58,7 +58,26 @@
 		  		{{template "menu.tmpl" .}}
         </div>
       </div>
-    </nav>
+		</nav> -->
+		<h1>OPEN INVENTORY</h1>
+
+		<div class="topnav">
+			<a class="button" href="">INVENTORY</a>
+			<a class="button" href="">ORDERS</a>
+			<a class="button" href="">REVIEWS</a>
+			<!-- <div class="username" href=""  title="Username">HELLO USERNAME</div> -->
+			<div class="dropdown">
+					<a class="username" href=""  title="Username">HELLO, USERNAME</a>
+					<i class="fa fa-caret-down"></i>
+					<div class="drop-content">
+							<a href="#"><center>PREFERENCES</center></a>
+							<a href="#"><center>PERMISSIONS</center></a>
+							</div>
+					</div>
+					<div id="navbar" class="navbar-toggler collapsed">
+						{{template "menu.tmpl" .}}
+					</div>
+			</div>
 
 	<input id="BaseURI" type="hidden" value="{{.BaseURI}}">
 	<div id="flash-container">

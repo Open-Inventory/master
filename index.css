@@ -1,0 +1,112 @@
+html {
+    background: #6c6c6c
+}
+
+body, h1{
+    font-family: "Segoe UI",  Helvetica, Arial, sans-serif;
+    letter-spacing: 2px;
+    background-color: orange!important;
+    margin-bottom: -70px;
+    margin-right: 7px;
+    margin-left: 8px;
+    border-radius: 3px;
+    /* padding: 60px; */
+}
+
+h1 {
+    -webkit-text-stroke: 1.5px rgb(95, 95, 95);
+    margin-left: 2px;
+    margin-right: 0px;
+    margin-top: -2px;
+    padding-left: 15px;
+    color: white;
+}
+
+/* .profile {
+    position: relative;
+    left: 85%;
+    bottom: -43px;
+
+} */
+
+.username, .button {
+    text-decoration: none;
+    font-family: "Segoe UI";
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: white;
+    background-color: #ee9a00;
+    padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    float: right;
+}
+
+.button {
+    border-radius: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    float: left;
+}
+
+.topnav .button:hover {background-color: #917005;}
+
+
+.username, .dropdown{
+    border-radius: 3px;
+    margin-right: 25px;
+    margin-left: 20px;
+    /* margin-top: -5px; */
+    /* padding-top: 10px; */
+    /* padding-bottom: 12px; */
+    padding-right: 60px;
+    float: right;
+}
+
+.dropdown{
+    padding-left: 120px;
+    /* position: relative;
+    display: inline-block; */
+}
+
+.fa-caret-down{
+    margin-top: 12px;
+    margin-right: -230px;
+    width: 10px;
+}
+
+.drop-content {
+    border-radius: 2px;
+    display: none;
+    position: absolute;
+    background-color: #929191;
+    margin-top: 20px;
+    margin-left: -136.5px;
+    min-width:170px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.drop-content a {
+    color: white;
+    padding:10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown:hover .drop-content {display:block;}
+.dropdown:hover {
+    padding-bottom: 60px;
+}
+.dropdown:hover .username {background-color: #917005;}
+.drop-content a:hover {background-color: rgb(124, 124, 124);}
+
+.topnav {
+    position: relative;
+    top: 27px;
+    left: 350px;
+    padding-right: 240px;
+}
