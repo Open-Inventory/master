@@ -102,7 +102,7 @@ h1 {
     padding-bottom: 60px;
 }
 .dropdown:hover .username {background-color: #917005;}
-.drop-content a:hover {background-color: rgb(124, 124, 124);}
+.drop-content a:hover {background-color: rgb(180, 180, 180);}
 
 .topnav {
     position: relative;
