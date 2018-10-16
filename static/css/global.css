@@ -53,6 +53,13 @@ h1 {
   color: white;
 }
 
+h1:hover {
+  color: rgb(238, 238, 238);
+}
+
+.topnav a {
+  text-decoration: none;
+}
 
 .username, .button {
   text-decoration: none;
@@ -78,7 +85,10 @@ h1 {
   float: left;
 }
 
-.topnav .button:hover {background-color: #917005;}
+.topnav .button:hover {
+  background-color: #917005;
+  color: rgb(216, 216, 216);
+}
 
 .username, .dropdown{
   border-radius: 3px;
@@ -129,8 +139,14 @@ h1 {
 
 .dropdown:hover .drop-content {display:block;}
 .dropdown:hover {padding-bottom: 90px;}
-.dropdown:hover .username {background-color: #917005;}
-.drop-content a:hover {background-color: rgb(124, 124, 124);}
+.dropdown:hover .username {
+  background-color: #917005;
+  color: rgb(216, 216, 216);
+}
+.drop-content a:hover {
+  background-color: rgb(124, 124, 124);
+  color: rgb(216, 216, 216);
+}
 
 .topnav {
   position: relative;
