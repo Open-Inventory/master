@@ -1,8 +1,27 @@
-{{define "title"}}Ayli{{end}}
+{{define "title"}}Open Inventory{{end}}
 {{define "head"}}{{end}}
 {{define "content"}}
 
 <!-- <div> You're in! </div> -->
+<body>
+		<h1>OPEN INVENTORY</h1>
+
+		<div class="topnav">
+			<a class="button" href="">INVENTORY</a>
+			<a class="button" href="">ORDERS</a>
+			<a class="button" href="">REVIEWS</a>
+			<!-- <div class="username" href=""  title="Username">HELLO USERNAME</div> -->
+			<div class="dropdown">
+					<a class="username" href=""  title="Username">HELLO, USERNAME</a>
+					<i class="fa fa-caret-down"></i>
+					<div class="drop-content">
+							<a href="#"><center>PREFERENCES</center></a>
+							<a href="#"><center>PERMISSIONS</center></a>
+							<a href="{{.BaseURI}}logout"><center>SIGN OUT</center></a>
+						</div>
+				</div>
+		</div>
+</body>
 
 {{end}}
 {{define "foot"}}
