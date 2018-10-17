@@ -43,7 +43,7 @@
 		<script src="//oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
 		<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-	
+
 	{{template "head" .}}
   </head>
   <body>
@@ -58,12 +58,13 @@
           </button>
           <a class="navbar-brand" href="{{.BaseURI}}" style="color:white">Basic App Starter</a>
         </div>
-        <div id="navbar" class="navbar-toggler collapsed">
-		  		{{template "menu.tmpl" .}}
-        </div>
+        
       </div>
 		</nav> -->
 
+		<div id="navbar" class="navbar-toggler collapsed">
+				{{template "menu.tmpl" .}}
+			</div>
 
 	<input id="BaseURI" type="hidden" value="{{.BaseURI}}">
 	<div id="flash-container">

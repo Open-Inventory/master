@@ -1,7 +1,27 @@
 {{if eq .AuthLevel "auth"}}
 
+
+<a href="#" style="text-decoration: none"><h1 href="#">OPEN INVENTORY</h1></a>
+
+	<div class="topnav">
+		<a class="button" href="#">INVENTORY</a>
+		<a class="button" href="#">SALES</a>
+		<a class="button" href="#">ORDERS</a>
+		<!-- <div class="username" href=""  title="Username">HELLO USERNAME</div> -->
+		<div class="dropdown">
+				<a class="username" href=""  title="Username">HELLO, USERNAME</a>
+				<i class="fa fa-caret-down"></i>
+				<div class="drop-content">
+						<a href="#"><center>PREFERENCES</center></a>
+						<a href="#"><center>PERMISSIONS</center></a>
+						<a href="{{.BaseURI}}logout"><center>SIGN OUT</center></a>
+					</div>
+			</div>
+	</div>
+
+<!-- 
  <ul class="nav navbar-nav navbar-right">
   <li><a href="{{.BaseURI}}logout" style="color:white">Sign Out</a></li>
-</ul> 
+</ul>  -->
 
 {{end}}

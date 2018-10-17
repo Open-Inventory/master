@@ -70,8 +70,8 @@ h1:hover {
   color: white;
   background-color: #ee9a00;
   padding: 5px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 3px;
   margin-top: -4px;
 
   float: right;
@@ -81,8 +81,8 @@ h1:hover {
   border-radius: 2px;
   margin-right: 0px;
   margin-left: 0px;
-  padding-top: 11px;
-  padding-bottom: 13px;
+  padding-top: 13px;
+  padding-bottom: 15px;
   float: left;
 }
 
@@ -93,7 +93,7 @@ h1:hover {
 
 .username, .dropdown{
   border-radius: 3px;
-  margin-right: -45px;
+  margin-right: -40px;
   /* margin-left: 25px; */
   /* margin-top: -5px; */
   /* padding-top: 10px; */
@@ -113,7 +113,7 @@ h1:hover {
 
 .fa-caret-down{
   margin-top: 12px;
-  margin-right: -190px;
+  margin-right: -220px;
   padding-left: 80px;
   width: 10px;
 }
@@ -124,7 +124,7 @@ h1:hover {
   position: absolute;
   background-color: #929191;
   margin-top: 18px;
-  margin-left: -44px;
+  margin-left: -62px;
   max-width:200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
