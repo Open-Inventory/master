@@ -71,6 +71,16 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.RegisterPOST)))
 
+	// Test Page
+	r.GET("/test", hr.Handler(alice.
+		New().
+		ThenFunc(controller.TestGET)))
+
+	// Inventory Page
+	r.GET("/inventory", hr.Handler(alice.
+		New().
+		ThenFunc(controller.InventoryGET)))
+
 	// Enable Pprof
 	r.GET("/debug/pprof/*pprof", hr.Handler(alice.
 		New(acl.DisallowAnon).
