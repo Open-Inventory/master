@@ -1,22 +1,24 @@
-{{define "title"}}BaseAppStart{{end}}
+{{define "title"}}Open Inventory{{end}}
 {{define "head"}}{{end}}
 {{define "content"}}
+
 <div class="container">
 	<div class="row" style="padding-top:25px; padding-bottom:25px">
 		<div class="col-xs-0 col-sm-8">
-			<h3> BasicAppStart </h3>
 			<hr>
-			<p> Get Started here </p>
+			<h1 style="font-size: 100px; letter-spacing: 10px; -webkit-text-stroke: 1.75px rgb(95, 95, 95); margin-top: 50px;"> OPEN <br /> INVENTORY </h1>
+			
+			<!-- <p style="margin-top: 100px; margin-left:50px;">Welcome</p> -->
 		</div>
 		<div class ="col-xs-12 col-sm-4">
-			<div class="card ">
+			<div class="card" style="background-color: rgb(180, 180, 180);">
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+						<a class="nav-link active" style="color:black" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+						<a class="nav-link " style="color:black" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
 					</li>
 					</ul>
 				</div>
@@ -35,7 +37,7 @@
 										<div><input type="password" class="form-control" id="password" name="password" maxlength="48" placeholder="Password" value="{{.password}}" /></div>
 									</div>
 									
-									<input type="submit" class="btn btn-primary" value="Login" class="button" />
+									<input style="background-color: orange; color: black" type="submit" class="btn btn-primary" value="Login" class="button" />
 									
 									<input type="hidden" name="token" value="{{.token}}">
 								</form>
@@ -71,7 +73,7 @@
 									<div class="g-recaptcha" data-sitekey="{{RECAPTCHA_SITEKEY}}" style="margin-bottom: 1rem;"></div>
 									{{end}}
 									
-									<input type="submit" value="Create Account" class="btn btn-primary" />
+									<input style="background-color: orange; color: black"  type="submit" value="Create Account" class="btn btn-primary" />
 									
 									<input type="hidden" name="token" value="{{.token}}">
 								</form>

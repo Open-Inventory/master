@@ -1,0 +1,52 @@
+{{define "title"}}Open Inventory{{end}}
+{{define "head"}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+{{end}}
+{{define "content"}}
+
+<!-- <div> You're in! </div> -->
+
+<body>
+	<div class="dashboard">
+		<table id="table_id" class="display">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Category</th>
+					<th>Manufacturer</th>
+					<th>Location</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>RTX 2080ti</td>
+					<td>Graphics Card</td>
+					<td>Nvidia</td>
+					<td>36c</td>
+					<td>In Stock
+				</tr>
+				<tr>
+					<td>RTX 2080</td>
+					<td>Graphics Card</td>
+					<td>Nvidia</td>
+					<td>36d</td>
+					<td>In Stock
+				</tr>
+				<tr>
+					<td>RTX 2070</td>
+					<td>Graphics Card</td>
+					<td>Nvidia</td>
+					<td>36e</td>
+					<td>In Stock
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+{{end}}
+{{define "foot"}}
+<script src="static/js/inventory.js"></script>
+{{end}}
