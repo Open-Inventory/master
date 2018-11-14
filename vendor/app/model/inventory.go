@@ -1,19 +1,20 @@
 package model
 
-import (
-	"app/common/litedb"
-)
+import "app/common/litedb"
 
-type Item struct {
-	Id int `db:"id"`
-}
-
-func CreateItem(name, category, subcategory, location, status string) error {
+func GetInventory() ([]Item, error) {
+	var items []Item
 	var err error
 	db, err := litedb.Connect()
+	defer db.Close()
 	if err != nil {
-		return err
+		return items, err
 	}
 
-	query := `INSERT INTO Product(ProductName, Category, 
+	query := `SELECT * FROM Item`
+	err = db.Select(&items, query)
+	if err != nil {
+		return items, err
+	}
+	return items, nil
 }
