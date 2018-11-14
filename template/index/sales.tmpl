@@ -1,17 +1,25 @@
 {{define "title"}}Open Inventory{{end}}
-{{define "head"}}{{end}}
+{{define "head"}}
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{{end}}
 {{define "content"}}
 
 <!-- <div> You're in! </div> -->
 <body>
-	<div class="dashboard">
+	<div class="dashboard" style="height: 1300px" >
 		<div id="dash" class="dashboard-nav">
-			<span style="margin:0px; margin-left: 10px; color: white; letter-spacing: 2px">Sales</span>
+			<span style="margin:0px; margin-left: 10px; color: white; letter-spacing: 2px">Inventory Metrics</span>
 		</div>
+		<canvas id="categoryCountCharts" width="400" height="225"></canvas>
+		<canvas id="categoryValueChart" width="400" height="225"></canvas>
+
 	</div>
 </body>
 
 {{end}}
 {{define "foot"}}
-		<script src="static/js/app.js"></script>
+		<script src="static/js/metrics.js"></script>
 {{end}}
