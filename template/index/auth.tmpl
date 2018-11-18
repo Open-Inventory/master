@@ -1,5 +1,10 @@
 {{define "title"}}Open Inventory{{end}}
-{{define "head"}}{{end}}
+{{define "head"}}
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{{end}}
 {{define "content"}}
 
 <!-- <div> You're in! </div> -->
@@ -31,12 +36,13 @@
 					<p> <center style="color:rgb(228, 228, 228); font-size: 65px; letter-spacing: 1px">$284,380</center> </p>
 			</div>
 			
-			<object style="background-color: grey; margin: 25px; margin-top: 10px; box-shadow: 5px 7px 20px 1px rgba(20, 20, 20, 0.2);" width="650" height="350" data="static/charts/chart_1.html"></object>
+			<canvas id="salesChart" width="650" height="350"></canvas>
+			<!-- <object style="background-color: grey; margin: 25px; margin-top: 10px; box-shadow: 5px 7px 20px 1px rgba(20, 20, 20, 0.2);" width="650" height="350" data="static/charts/chart_1.html"></object> -->
 	
 	</div>
 </body>
 
 {{end}}
 {{define "foot"}}
-		<script src="static/js/app.js"></script>
+		<script src="static/js/salesChart.js"></script>
 {{end}}
