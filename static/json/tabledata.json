@@ -1,0 +1,44 @@
+{
+    "data": [
+      {
+        "item": "RTX 2080ti",
+        "category": "Video Card",
+        "manufacturer": "Nvidia",
+        "location": "36c",
+        "status": "<select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\"><option value=\"1\">In Stock<\/option><option value=\"1\">Out of Stock<\/option><option value=\"1\">N/A<\/option><\/select>",
+        "action": " <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>"
+      },
+      {
+        "item": "RTX 2080ti",
+        "category": "Video Card",
+        "manufacturer": "Nvidia",
+        "location": "36c",
+        "status": "<select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\"><option value=\"1\">In Stock<\/option><option value=\"1\">Out of Stock<\/option><option value=\"1\">N/A<\/option><\/select>",
+        "action": " <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>"
+      },
+      {
+        "item": "RTX 2080",
+        "category": "Video Card",
+        "manufacturer": "Nvidia",
+        "location": "36c",
+        "status": "<select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\"><option value=\"1\">In Stock<\/option><option value=\"1\">Out of Stock<\/option><option value=\"1\">N/A<\/option><\/select>",
+        "action": " <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>"
+      },
+      {
+        "item": "RTX 2070",
+        "category": "Video Card",
+        "manufacturer": "Nvidia",
+        "location": "36c",
+        "status": "<select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\"><option value=\"1\">In Stock<\/option><option value=\"1\">Out of Stock<\/option><option value=\"1\">N/A<\/option><\/select>",
+        "action": " <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>"
+      },
+      {
+        "item": "GTX TITAN",
+        "category": "Video Card",
+        "manufacturer": "Nvidia",
+        "location": "36c",
+        "status": "<select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\"><option value=\"1\">In Stock<\/option><option value=\"1\">Out of Stock<\/option><option value=\"1\">N/A<\/option><\/select>",
+        "action": " <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>"
+      }
+    ]
+  }

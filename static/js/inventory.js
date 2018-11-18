@@ -1,44 +1,72 @@
-var t
-
 $(document).ready(function () {
-    /*
-    $('#table_id tbody td').editable( function( sValue ) {
-		//Get the position of the current data from the node 
-		var aPos = t.api().fnGetPosition( this );
-		
-		//Get the data array for this row 
-		var aData = t.fnGetData( aPos[0] );
-		
-		//Update the data array and return the value 
-		aData[ aPos[1] ] = sValue;
-		return sValue;
-    }, { "onblur": 'submit' } ); // Submit the form when bluring a field 
-    */
-    
-    t = $('#table_id').DataTable();
+    var table;
 
-    $('#AddRow').on( 'click', function () {
-        t.api().row.add( [
-            "Click to edit",
-            "Click to edit",
-            "Click to edit",
-            "Click to edit",
-            "Click to edit"
-        ] ).draw( false );
-     });
+    $("#example").on("mousedown", "td .fas.fa-times", function(e) {
+      table.row($(this).closest("tr")).remove().draw();
+    })
 
-     $('#table_id tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        }
-        else {
-            t.api().$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
+    $("#example").on('mousedown.edit', "i.far.fa-edit", function(e) {
+
+      $(this).removeClass().addClass("fas fa-check");
+      var $row = $(this).closest("tr").off("mousedown");
+      var $tds = $row.find("td").not(':last');
+      var $tds = $tds.not(':last');
+
+      $.each($tds, function(i, el) {
+        var txt = $(this).text();
+        $(this).html("").append("<input type='text' value=\""+txt+"\">");
+      });
+
     });
 
- 
-    $('#RemoveRow').click( function () {
-        t.api().row('.selected').remove().draw( false );
-    } );
-});
+    $("#example").on('mousedown', "input", function(e) {
+      e.stopPropagation();
+    });
+
+    $("#example").on('mousedown.save', "i.fas.fa-check", function(e) {
+      
+      $(this).removeClass().addClass("far fa-edit");
+      var $row = $(this).closest("tr");
+      var $tds = $row.find("td").not(':last');
+      
+      $.each($tds, function(i, el) {
+        var txt = $(this).find("input").val()
+        $(this).html(txt);
+      });
+    });
+    
+    
+     $("#example").on('mousedown', "#selectbasic", function(e) {
+      e.stopPropagation();
+    });
+    
+
+    var testdata = 'static/json/tabledata.json';
+    table = $('#example').DataTable({
+      ajax: testdata,
+      columns: [{
+        data: 'item'
+      }, {
+        data: 'category'
+      }, {
+        data: 'manufacturer'
+      }, {
+        data: 'location'
+      }, {
+        data: 'status'
+      }, {
+        data: 'action'
+      }]
+    });
+    
+    $('#example').css('border-bottom', 'none');
+
+    // add row
+    $('#addRow').click(function() {
+      var rowHtml = $("#newRow").find("tr")[0].outerHTML
+      console.log(rowHtml);
+      table.row.add($(rowHtml)).draw();
+    });
+  });
+
+   
