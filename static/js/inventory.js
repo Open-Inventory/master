@@ -46,17 +46,17 @@ $(document).ready(function () {
       ajax: testdata,
       columns: [{
         data: 'item'
-      }, {
-        data: 'category'
-      }, {
+        }, {
         data: 'manufacturer'
-      }, {
+        }, {
+        data: 'category'
+        }, {
         data: 'location'
-      }, {
-        data: 'status'
-      }, {
+        }, {
+        data: 'stock'
+        }, {
         data: 'action'
-      }]
+        }]
     });
     
     $('#example').css('border-bottom', 'none');
