@@ -43,8 +43,9 @@ $(document).ready(function () {
 
     var testdata = 'static/json/tabledata.json';
     table = $('#example').DataTable({
-      ajax: testdata,
-      columns: [{
+        stateSave: true,
+        ajax: testdata,
+        columns: [{
         data: 'item'
         }, {
         data: 'manufacturer'
