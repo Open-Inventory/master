@@ -3,9 +3,9 @@ package controller
 import (
 	"app/common/session"
 	"app/model"
-	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type InventoryItem struct {
@@ -22,12 +22,15 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 	session := session.Instance(r)
 
 	if session.Values["id"] != nil {
-		decoder := json.NewDecoder(r.Body)
+		queryValues := r.URL.Query()
+		status, _ := strconv.Atoi(queryValues.Get("status"))
 
-		var item InventoryItem
-		err := decoder.Decode(&item)
-		if err != nil {
-			Error500(w, r)
+		item := InventoryItem{
+			Id:         0,
+			Name:       queryValues.Get("name"),
+			SubType:    queryValues.Get("subtype"),
+			Type:       queryValues.Get("type"),
+			ItemStatus: status,
 		}
 
 		var subCatId int

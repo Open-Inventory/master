@@ -87,7 +87,7 @@ func routes() *httprouter.Router {
 		ThenFunc(controller.GetInventory)))
 
 	// Inventory retriever
-	r.POST("/api/item", hr.Handler(alice.
+	r.GET("/api/item", hr.Handler(alice.
 		New().
 		ThenFunc(controller.CreateItem)))
 
