@@ -10,7 +10,6 @@ $(document).ready(function () {
       $(this).removeClass().addClass("fas fa-check");
       var $row = $(this).closest("tr").off("mousedown");
       var $tds = $row.find("td").not(':last');
-      var $tds = $tds.not(':last');
 
       $.each($tds, function(i, el) {
         var txt = $(this).text();
@@ -29,10 +28,27 @@ $(document).ready(function () {
       var $row = $(this).closest("tr");
       var $tds = $row.find("td").not(':last');
       
+
+      var itemArray = []
       $.each($tds, function(i, el) {
         var txt = $(this).find("input").val()
+        itemArray[i] = txt
         $(this).html(txt);
       });
+
+      var item = {
+        Id: itemArray[0],
+        Name:itemArray[1],
+        SubType: itemArray[2],
+        Type: itemArray[3],
+        ItemStatus: itemArray[4]
+      }
+      console.log(item)
+      var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+      xmlhttp.open("POST", "/api/item");
+      xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xmlhttp.setRequestHeader('X-CSRFToken',document.getElementById('token').getAttribute('value'))
+      xmlhttp.send(JSON.stringify(item));
     });
     
     
@@ -41,23 +57,28 @@ $(document).ready(function () {
     });
     
 
-    var testdata = 'static/json/tabledata.json';
+    //var testdata = 'static/json/tabledata.json';
     table = $('#example').DataTable({
         stateSave: true,
-        ajax: testdata,
-        columns: [{
-        data: 'item'
-        }, {
-        data: 'manufacturer'
-        }, {
-        data: 'category'
-        }, {
-        data: 'location'
-        }, {
-        data: 'stock'
-        }, {
-        data: 'action'
-        }]
+        ajax: {
+          "dataType": 'json',
+          "contentType": "application/json; charset=utf-8",
+          "type": "GET",
+          "url":"/api/inventory",
+          "dataSrc": function (json) {
+             return json;
+          }
+      },
+      columns: [
+        {'data': 'Id'},
+        {'data': 'Name'},
+        {'data': 'SubType'},
+        {'data': 'Type'},
+        {'data': 'ItemStatus'},
+        {'data': 'Updated'},
+        {'data': function(json) {
+          return `<i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>`
+        }}]
     });
     
     $('#example').css('border-bottom', 'none');

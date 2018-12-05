@@ -1,20 +1,17 @@
 package litedb
 
 import (
-	"log"
-
 	"github.com/jmoiron/sqlx"
-	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-const dbpath = "./Open_Inventory.db"
+const dbpath = "./OpenInventory.db"
 
 func Connect() (*sqlx.DB, error) {
-	var err error
-	if db, err := sqlx.Connect("sqlite3", dbpath); err == nil {
-		return db, err
+	db, err := sqlx.Open("sqlite3", "./OpenInventory.db")
+	if err != nil {
+		return nil, err
 	}
+	return db, nil
 
-	log.Panic(err.Error())
-	return nil, err
 }

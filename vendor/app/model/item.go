@@ -5,12 +5,14 @@ import (
 )
 
 type Item struct {
-	Id         int `db:"id"`
-	ProductKey int `db:"ProductKey"`
-	ItemStatus int `db:"ItemStatus"`
+	Id         int    `db:"ItemID"`
+	ProductKey int    `db:"ProductKey"`
+	ItemStatus int    `db:"ItemStatus"`
+	Created    string `db:Created_on`
+	Updated    string `db:Updated_on`
 }
 
-func CreateItem(name string, productKey int, status string) (int64, error) {
+func CreateItem(productKey int, status int) (int64, error) {
 	var err error
 	db, err := litedb.Connect()
 	if err != nil {
@@ -34,7 +36,7 @@ func GetItemById(id int) (Item, error) {
 		return item, err
 	}
 
-	query := `SELECT * FROM Item WHERE ItemId=$1 LIMIT 1`
+	query := `SELECT Item.ItemID, Product.ProductName, Category.CategoryType, SubCategory.SubCategoryType, Item.ItemStatus, Item.Created_On, Item.Updated_On FROM Item INNER JOIN Product ON Product.ProductKey=Item.ProductKey INNER JOIN Category ON Category.CategoryID=Product.CategoryID INNER JOIN SubCategory ON SubCategory.SubCategoryID=Product.SubCategoryID WHERE ItemID=$1`
 	err = db.Select(&item, query, id)
 	if err != nil {
 		return item, err

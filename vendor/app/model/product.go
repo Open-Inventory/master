@@ -40,3 +40,20 @@ func GetProductById(id int) (Product, error) {
 	}
 	return product, nil
 }
+
+func GetProductByType(name string) (Product, error) {
+	var product Product
+	var err error
+	db, err := litedb.Connect()
+	defer db.Close()
+	if err != nil {
+		return product, err
+	}
+
+	query := `SELECT * FROM Product WHERE ProductName=$1 LIMIT 1`
+	err = db.Select(&product, query, name)
+	if err != nil {
+		return product, err
+	}
+	return product, nil
+}

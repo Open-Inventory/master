@@ -81,6 +81,16 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.InventoryGET)))
 
+	// Inventory retriever
+	r.GET("/api/inventory", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.GetInventory)))
+
+	// Inventory retriever
+	r.POST("/api/item", hr.Handler(alice.
+		New().
+		ThenFunc(controller.CreateItem)))
+
 	// Sales Page
 	r.GET("/sales", hr.Handler(alice.
 		New().

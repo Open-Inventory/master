@@ -3,6 +3,9 @@ package controller
 import (
 	"app/common/session"
 	"app/common/view"
+	"app/model"
+	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/josephspurrier/csrfbanana"
@@ -18,6 +21,7 @@ func InventoryGET(w http.ResponseWriter, r *http.Request) {
 		v := view.New(r)
 		v.Name = "index/inventory"
 		v.Vars["first_name"] = session.Values["first_name"]
+		v.Vars["token"] = csrfbanana.Token(w, r, session)
 		v.Render(w)
 	} else {
 		// Display the view
@@ -27,4 +31,21 @@ func InventoryGET(w http.ResponseWriter, r *http.Request) {
 		v.Render(w)
 		return
 	}
+}
+
+func GetInventory(w http.ResponseWriter, r *http.Request) {
+	session := session.Instance(r)
+
+	if session.Values["id"] != nil {
+		response, err := model.GetInventory()
+		if err != nil {
+			log.Println("Error: " + err.Error())
+			Error500(w, r)
+		}
+		data, _ := json.Marshal(response)
+		w.Write(data)
+	} else {
+		Error500(w, r)
+	}
+
 }

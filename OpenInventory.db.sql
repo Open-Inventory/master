@@ -1,0 +1,30 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "Item" (
+	"ItemID"	INTEGER,
+	"ProductKey"	INTEGER NOT NULL,
+	"ItemStatus"	INTEGER NOT NULL DEFAULT 0,
+	"Created_On"	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	"Updated_On"	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY("ProductKey") REFERENCES "Product"("ProductKey"),
+	PRIMARY KEY("ItemID")
+);
+CREATE TABLE IF NOT EXISTS "Category" (
+	"CategoryID"	INTEGER,
+	"CategoryType"	TEXT NOT NULL,
+	PRIMARY KEY("CategoryID")
+);
+CREATE TABLE IF NOT EXISTS "Product" (
+	"ProductKey"	INTEGER,
+	"ProductName"	TEXT NOT NULL,
+	"CategoryID"	INTEGER NOT NULL,
+	"SubCategoryID"	INTEGER NOT NULL,
+	PRIMARY KEY("ProductKey"),
+	FOREIGN KEY("CategoryID") REFERENCES "Category"("CategoryID"),
+	FOREIGN KEY("SubCategoryID") REFERENCES "SubCategory"("SubCategoryID")
+);
+CREATE TABLE IF NOT EXISTS "SubCategory" (
+	"SubCategoryID"	INTEGER,
+	"SubCategoryType"	TEXT NOT NULL,
+	PRIMARY KEY("SubCategoryID")
+);
+COMMIT;
