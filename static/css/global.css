@@ -207,7 +207,7 @@ h1:hover {
   background-color: #dad8d8;
 }
 
-.fa-edit:hover, .fa-times:hover, .fa-check:hover, .fa-plus:hover {
+.fa-edit:hover, .fa-times:hover, .fa-check:hover, .fa-plus:hover, .fa-minus:hover {
   color: rgb(90, 90, 90);
   cursor: pointer;
 }

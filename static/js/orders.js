@@ -1,9 +1,54 @@
+function format ( order ) {
+  let numProducts = 1; //place holder for quantity in an order
+  let productRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr>';
+  for(let i=1; i<=numProducts; i++) {
+    productRow=productRow+`<tr><td>Product ${i}:</td><td>${order.Products}</td>`;
+  }
+  return productRow+'</table>';
+}
+
 $(document).ready(function () {
   var table;
 
   $("#example").on("mousedown", "td .fas.fa-times", function (e) {
     table.row($(this).closest("tr")).remove().draw();
   })
+
+  $('#example').on('mousedown', "td .fas.fa-plus", function () {
+    $(this).removeClass().addClass("fas fa-minus");
+  
+    var tr = $(this).closest('tr');
+    var row = table.row( tr );
+    
+    if ( row.child.isShown() ) {
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else {
+        // Open this row
+        row.child( format(row.data()) ).show();
+        tr.addClass('shown');
+    }
+  });
+
+  $('#example').on('mousedown', "td .fas.fa-minus", function () {
+    $(this).removeClass().addClass("fas fa-plus");
+  
+    var tr = $(this).closest('tr');
+    var row = table.row( tr );
+
+    if ( row.child.isShown() ) {
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else {
+        // Open this row
+        row.child( format(row.data()) ).show();
+        tr.addClass('shown');
+    }
+  });
 
   $("#example").on('mousedown.edit', "i.far.fa-edit", function (e) {
 
@@ -75,7 +120,7 @@ $(document).ready(function () {
       { 'data': 'Date' },
       {
         'data': function (json) {
-          return `<i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i> <i class=\"fas fa-plus\" aria-hidden=\"true\"></i>`
+          return `<i class=\"fas fa-plus\" aria-hidden=\"true\"></i> <i class=\"far fa-edit\" aria-hidden=\"true\"></i> <i class=\"fas fa-times\" aria-hidden=\"true\"></i>`
         }
       }]
   });
