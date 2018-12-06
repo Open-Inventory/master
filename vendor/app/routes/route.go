@@ -101,6 +101,10 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.OrdersGET)))
 
+	r.GET("/api/orders", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.GetOrders)))
+
 	// Enable Pprof
 	r.GET("/debug/pprof/*pprof", hr.Handler(alice.
 		New(acl.DisallowAnon).

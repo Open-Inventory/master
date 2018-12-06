@@ -1,17 +1,55 @@
 {{define "title"}}Open Inventory{{end}}
-{{define "head"}}{{end}}
+{{define "head"}}
+<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script data-require="datatables@*" data-semver="1.10.12" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">  
+{{end}}
 {{define "content"}}
 
 <!-- <div> You're in! </div> -->
 <body>
-	<div class="dashboard">
-		<div id="dash" class="dashboard-nav">
-			<span style="margin:0px; margin-left: 10px; color: white; letter-spacing: 2px">Orders</span>
-		</div>
-	</div>
-</body>
+		<div class="orders">
+				<div id="dash" class="dashboard-nav">
+						<span style="margin:0px; margin-left: 10px; color: white; letter-spacing: 2px">Inventory</span>
+				</div>
+				<div style="margin-right:25px; margin-left:25px">
+					<button class="button" id="addRow" style="cursor: pointer">New Item</button>
+					<table id="example" class="display" width="100%" cellspacing="0">
+						<thead>
+						  <tr>
+							<th style="width: 50px; max-width:400px">Order ID</th>
+							<th style="width: 50px; max-width:100px">Quantity</th>
+							<!-- <th style="width: 150px; max-width:200px">Products</th> -->
+							<th style="width: 25px">Order Status</th>>
+							<th style="width: 150px">Order Date</th>>
+							<th style="width: 75px; max-width:75px">Action</th>
+						  </tr>
+						</thead>
+					  </table>
+					
+					  <table id="newRow" style="display:none">
+						<tbody>
+							<tr>
+								<td>_N/A</td>
+								<td>N/A</td>
+								<!-- <td>N/A</td> -->
+								<td>N/A</td>
+								<td>N/A</td>
+								<td><i class="far fa-edit" aria-hidden="true"></i>
+									<i class="fas fa-times" aria-hidden="true"></i> </td>
+							</tr>
+						</tbody>
+					  </table>
+					</div>
+				
+			</div>
+	
+  </body>
+
+	<div type="hidden" id="token" value="{{.token}}">
 
 {{end}}
 {{define "foot"}}
-		<script src="static/js/app.js"></script>
+<script src="static/js/orders.js"></script>
 {{end}}

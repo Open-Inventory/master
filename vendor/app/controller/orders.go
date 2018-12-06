@@ -3,6 +3,9 @@ package controller
 import (
 	"app/common/session"
 	"app/common/view"
+	"app/model"
+	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/josephspurrier/csrfbanana"
@@ -27,4 +30,21 @@ func OrdersGET(w http.ResponseWriter, r *http.Request) {
 		v.Render(w)
 		return
 	}
+}
+
+func GetOrders(w http.ResponseWriter, r *http.Request) {
+	session := session.Instance(r)
+
+	if session.Values["id"] != nil {
+		response, err := model.GetOrders()
+		if err != nil {
+			log.Println("Error: " + err.Error())
+			Error500(w, r)
+		}
+		data, _ := json.Marshal(response)
+		w.Write(data)
+	} else {
+		Error500(w, r)
+	}
+
 }
