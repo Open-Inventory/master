@@ -1,8 +1,7 @@
 function format ( order ) {
-  let numProducts = 1; //place holder for quantity in an order
-  let productRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr>';
-  for(let i=1; i<=numProducts; i++) {
-    productRow=productRow+`<tr><td>Product ${i}:</td><td>${order.Products}</td>`;
+  let productRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:500x;"><tr>';
+  for(let i=1; i<=order.Quantity; i++) {
+    productRow=productRow+`<tr><td>Product ${i}:</td><td>${order.Products}</td><td>ID: ${order.ItemID}</td>`;
   }
   return productRow+'</table>';
 }
@@ -19,7 +18,7 @@ $(document).ready(function () {
   
     var tr = $(this).closest('tr');
     var row = table.row( tr );
-    
+
     if ( row.child.isShown() ) {
         // This row is already open - close it
         row.child.hide();
@@ -85,7 +84,8 @@ $(document).ready(function () {
       ID: orderArray[0],
       Quantity: orderArray[1],
       Products: orderArray[2],
-      Status: orderArray[3],
+      ItemID: orderArray[3],
+      Status: orderArray[4],
     }
 
     // $.getJSON("/api/item?name=" + orderArray[0] + "&Products=" + item.Products + "&Status=" + order.Status, function (response) {

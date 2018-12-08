@@ -21,7 +21,11 @@ func GetInventory() ([]InventoryItem, error) {
 		return items, err
 	}
 
-	query := `SELECT Item.ItemID, Product.ProductName, Category.CategoryType, SubCategory.SubCategoryType, Item.ItemStatus, Item.Created_On, Item.Updated_On FROM Item INNER JOIN Product ON Product.ProductKey=Item.ProductKey INNER JOIN Category ON Category.CategoryID=Product.CategoryID INNER JOIN SubCategory ON SubCategory.SubCategoryID=Product.SubCategoryID`
+	query := `SELECT Item.ItemID, Product.ProductName, Category.CategoryType, SubCategory.SubCategoryType, Item.ItemStatus, Item.Created_On, Item.Updated_On 
+	FROM Item 
+	INNER JOIN Product ON Product.ProductKey=Item.ProductKey 
+	INNER JOIN Category ON Category.CategoryID=Product.CategoryID 
+	INNER JOIN SubCategory ON SubCategory.SubCategoryID=Product.SubCategoryID`
 	err = db.Select(&items, query)
 	if err != nil {
 		return items, err
