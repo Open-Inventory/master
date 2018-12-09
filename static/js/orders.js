@@ -1,10 +1,12 @@
-function format ( order ) {
+
+function format ( productArray ) {
   let productRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:500x;"><tr>';
-  for(let i=1; i<=order.Quantity; i++) {
-    productRow=productRow+`<tr><td>Product ${i}:</td><td>${order.Products}</td><td>ID: ${order.ItemID}</td>`;
+  for(var i=0; i < productArray.length; i++) {
+     productRow=productRow+`<tr><td>Product ${i+1}:</td><td>${productArray[i].Products}</td><td>ID: ${productArray[i].ItemID}</td>`;
   }
   return productRow+'</table>';
 }
+
 
 $(document).ready(function () {
   var table;
@@ -14,21 +16,36 @@ $(document).ready(function () {
   })
 
   $('#example').on('mousedown', "td .fas.fa-plus", function () {
-    $(this).removeClass().addClass("fas fa-minus");
-  
+    $(this).removeClass().addClass("fas fa-minus");    
     var tr = $(this).closest('tr');
     var row = table.row( tr );
 
-    if ( row.child.isShown() ) {
-        // This row is already open - close it
-        row.child.hide();
-        tr.removeClass('shown');
+    var size = table.rows().count();
+    var currentIndex;
+
+    //get current row index
+    for (var i = 0; i < size; i++) { 
+      if (table.row(i).data().ItemID == row.data().ItemID) {
+        console.log(i, " ", table.row(i).data());
+        console.log(row.data());
+        currentIndex = i;
+      }
     }
-    else {
-        // Open this row
-        row.child( format(row.data()) ).show();
-        tr.addClass('shown');
+    var nextrow = table.row ( currentIndex + 1 );
+
+    console.log("\nCurrent Row:",row.data());
+    console.log("Next Row:",nextrow.data());
+
+    var productArray = []
+    for (var i = 0; i < row.data().Quantity; i++) {
+      productArray.push(table.row(currentIndex + i).data());
     }
+    console.log(productArray);
+
+    // Open this row
+    row.child( format(productArray) ).show();
+    tr.addClass('shown');
+
   });
 
   $('#example').on('mousedown', "td .fas.fa-minus", function () {
@@ -37,16 +54,9 @@ $(document).ready(function () {
     var tr = $(this).closest('tr');
     var row = table.row( tr );
 
-    if ( row.child.isShown() ) {
-        // This row is already open - close it
-        row.child.hide();
-        tr.removeClass('shown');
-    }
-    else {
-        // Open this row
-        row.child( format(row.data()) ).show();
-        tr.addClass('shown');
-    }
+    // This row is already open, close it
+    row.child.hide();
+    tr.removeClass('shown');
   });
 
   $("#example").on('mousedown.edit', "i.far.fa-edit", function (e) {
@@ -99,9 +109,25 @@ $(document).ready(function () {
     e.stopPropagation();
   });
 
+  // var productArray = [];
+  var count = 0;
 
   //var testdata = 'static/json/tabledata.json';
   table = $('#example').DataTable({
+
+  "rowCallback": function( row, data ) {
+    var currentProduct;
+    var previousProduct;
+    var multipleProducts = 0;
+    if(count != 0) {
+      if (table.data()[count].ID == table.data()[count-1].ID) {
+        multipleProducts = 1;
+        $(row).hide();
+      }
+    }
+
+    count++;
+  },
     stateSave: true,
     ajax: {
       "dataType": 'json',
@@ -109,8 +135,10 @@ $(document).ready(function () {
       "type": "GET",
       "url": "/api/orders",
       "dataSrc": function (json) {
+
         return json;
       }
+
     },
     columns: [
       { 'data': 'ID' },
