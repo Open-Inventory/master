@@ -41,10 +41,11 @@ $(document).ready(function () {
       Name: itemArray[1],
       SubType: itemArray[2],
       Type: itemArray[3],
-      ItemStatus: itemArray[4]
+      ItemStatus: itemArray[4],
+      OrderID: itemArray[5]
     }
 
-    $.getJSON("/api/item?name=" + itemArray[1] + "&subtype=" + itemArray[2] + "&type=" + itemArray[3] + "&status=" + itemArray[4], function (response) {
+    $.getJSON("/api/item?id=" + itemArray[0] + "&name=" + itemArray[1] + "&subtype=" + itemArray[2] + "&type=" + itemArray[3] + "&status=" + itemArray[4] + "&order=" + itemArray[5], function (response) {
 
     });
   });
@@ -73,6 +74,7 @@ $(document).ready(function () {
       { 'data': 'SubType' },
       { 'data': 'Type' },
       { 'data': 'ItemStatus' },
+      { 'data': 'Order' },
       { 'data': 'Updated' },
       {
         'data': function (json) {

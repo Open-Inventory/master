@@ -15,6 +15,7 @@ type Item struct {
 func CreateItem(productKey int, status int) (int64, error) {
 	var err error
 	db, err := litedb.Connect()
+	defer db.Close()
 	if err != nil {
 		return 0, err
 	}
@@ -42,4 +43,17 @@ func GetItemById(id int) (Item, error) {
 		return item, err
 	}
 	return item, nil
+}
+
+func UpdateItemOrderId(id int, orderId int) error {
+	var err error
+	db, err := litedb.Connect()
+	defer db.Close()
+	if err != nil {
+		return err
+	}
+
+	query := `UPDATE item SET OrderID=$1 WHERE ItemID=$2;`
+	_ = db.MustExec(query, orderId, id)
+	return err
 }
