@@ -20,27 +20,50 @@ $(document).ready(function () {
     var tr = $(this).closest('tr');
     var row = table.row( tr );
 
+    // Get the order quantities for each order
     var size = table.rows().count();
-    var currentIndex;
+    var length=orderList.length;
+    var orderQuantities = [];
+    for (var i = 1; i <= orderList[length-1].ID; i++) {
+      orderQuantities[i] = 0;
+      for (var j = 0; j < length; j++) {
+
+        if (orderList[j].ID == i) {
+          orderQuantities[i]++;
+        }
+      }
+    } //OrderQuantities[orderID] now holds the quantity for each order.
+    var quantityByItem = [];
+    for (var i = 1; i <= orderQuantities.length; i++) {
+      //quantityByItem[i] = 0;
+      for (var j = 0; j < length; j++) {
+        if (orderList[j].ID == i) {
+          quantityByItem[j] = orderQuantities[i];
+        }
+      }
+    }
+
+    
 
     //get current row index
     for (var i = 0; i < size; i++) { 
       if (table.row(i).data().ItemID == row.data().ItemID) {
-        console.log(i, " ", table.row(i).data());
-        console.log(row.data());
+        // console.log(i, " ", table.row(i).data());
+        // console.log(row.data());
         currentIndex = i;
       }
     }
     var nextrow = table.row ( currentIndex + 1 );
 
-    console.log("\nCurrent Row:",row.data());
-    console.log("Next Row:",nextrow.data());
+    // console.log("\nCurrent Row:",row.data());
+    // console.log("Next Row:",nextrow.data());
 
     var productArray = []
-    for (var i = 0; i < row.data().Quantity; i++) {
+    for (var i = 0; i < quantityByItem[currentIndex]; i++) { //row.data().Quantity
       productArray.push(table.row(currentIndex + i).data());
     }
-    console.log(productArray);
+    // console.log("i:", i, "\nindex:", currentIndex, "\nquantity:", quantityByItem[currentIndex]);
+    // console.log(productArray);
 
     // Open this row
     row.child( format(productArray) ).show();
@@ -111,21 +134,21 @@ $(document).ready(function () {
 
   // var productArray = [];
   var count = 0;
+  var orderList = [];
 
   //var testdata = 'static/json/tabledata.json';
   table = $('#example').DataTable({
 
   "rowCallback": function( row, data ) {
-    var currentProduct;
-    var previousProduct;
     var multipleProducts = 0;
+    var dTable = table.data();
+    orderList.push(dTable[count]);
     if(count != 0) {
-      if (table.data()[count].ID == table.data()[count-1].ID) {
+      if (dTable[count].ID == dTable[count-1].ID) {
         multipleProducts = 1;
         $(row).hide();
       }
     }
-
     count++;
   },
     stateSave: true,
@@ -142,7 +165,7 @@ $(document).ready(function () {
     },
     columns: [
       { 'data': 'ID' },
-      { 'data': 'Quantity' },
+      // { 'data': 'Quantity' },
       // { 'data': 'Products' }, 
       { 'data': 'Status' },
       { 'data': 'Date' },
