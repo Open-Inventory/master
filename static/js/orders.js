@@ -177,6 +177,8 @@ $(document).ready(function () {
   });
 
   $('#example').css('border-bottom', 'none');
+  $('#example').css('compact');
+
 
   // add row
   $('#addRow').click(function () {
