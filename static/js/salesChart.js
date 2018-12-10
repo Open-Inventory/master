@@ -59,6 +59,3 @@ $(document).ready(function() {
         }
     });
 });
-=======
-    window.location.href = 'inventory'});
->>>>>>> ad2edb596be3f1078accd8c07f6da61c05e8aad3
