@@ -91,6 +91,10 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.CreateItem)))
 
+	r.GET("/api/item/delete", hr.Handler(alice.
+		New().
+		ThenFunc(controller.DeleteItem)))
+
 	// Sales Page
 	r.GET("/sales", hr.Handler(alice.
 		New().

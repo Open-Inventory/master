@@ -2,7 +2,12 @@ $(document).ready(function () {
   var table;
 
   $("#example").on("mousedown", "td .fas.fa-times", function (e) {
+    var itemArray = table.row($(this).closest("tr")).data()
     table.row($(this).closest("tr")).remove().draw();
+
+    $.getJSON("/api/item/delete?id=" + itemArray["Id"], function(response) {
+      location.reload();
+    });
   })
 
   $("#example").on('mousedown.edit', "i.far.fa-edit", function (e) {
@@ -46,7 +51,7 @@ $(document).ready(function () {
     }
 
     $.getJSON("/api/item?id=" + itemArray[0] + "&name=" + itemArray[1] + "&subtype=" + itemArray[2] + "&type=" + itemArray[3] + "&status=" + itemArray[4] + "&order=" + itemArray[5], function (response) {
-
+      location.reload();
     });
   });
 

@@ -57,3 +57,16 @@ func UpdateItemOrderId(id int, orderId int) error {
 	_ = db.MustExec(query, orderId, id)
 	return err
 }
+
+func DeleteItem(id int) error {
+	var err error
+	db, err := litedb.Connect()
+	defer db.Close()
+	if err != nil {
+		return err
+	}
+
+	query := `DELETE FROM item WHERE ItemID=$1;`
+	_ = db.MustExec(query, id)
+	return err
+}

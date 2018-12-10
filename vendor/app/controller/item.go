@@ -38,7 +38,7 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if session.Values["id"] != nil {
-		if id == "N/A" {
+		if idint == 0 {
 			var subCatId int
 			subCat, err := model.GetSubCategoryByType(item.SubType)
 			if err != nil {
@@ -87,6 +87,26 @@ func CreateItem(w http.ResponseWriter, r *http.Request) {
 			} else {
 				log.Println("Successfully updated order ID")
 			}
+		}
+	} else {
+		Error500(w, r)
+	}
+}
+
+func DeleteItem(w http.ResponseWriter, r *http.Request) {
+	// Get session
+	session := session.Instance(r)
+	if session.Values["id"] != nil {
+		queryValues := r.URL.Query()
+
+		id := queryValues.Get("id")
+		idint, _ := strconv.Atoi(id)
+
+		err := model.DeleteItem(idint)
+		if err != nil {
+			log.Println("Unuccessfully deleted item")
+		} else {
+			log.Println("Successfully deleted item")
 		}
 	} else {
 		Error500(w, r)
