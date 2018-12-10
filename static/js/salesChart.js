@@ -1,11 +1,8 @@
 $(document).ready(function() {
-    var products = ["ASRock Fatal1ty B250M Performance",
-    "Dell UltraSharp U2715H 27-Inch Screen LED-Lit Monitor",
-    "SanDisk 128GB Ultra microSDXC UHS-I Memory Card with Adapter"]
     Chart.defaults.global.defaultFontColor = 'white';
     var ctx = document.getElementById("salesChart").getContext('2d');
     var salesChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'polarArea',
         data: {
             // labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             labels: products,

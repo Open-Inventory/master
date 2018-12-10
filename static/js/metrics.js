@@ -7,7 +7,7 @@ $(document).ready(function() {
             console.log (items);
             labels.push(data[i].Name);
         })
-        charts('categoryCountCharts', labels, items);
+        charts('Product Distribution', 'categoryCountCharts', labels, items);
       });
 
     $.getJSON("/api/orders/quantity", function(data) {
@@ -19,14 +19,14 @@ $(document).ready(function() {
         console.log (quantity);
 
     })
-    charts('categoryValueChart', id, quantity);
+    charts('Orders Distribution' ,'categoryValueChart', id, quantity);
     });
 });
 
-function charts ( location, labels, data ) {
+function charts ( title, location, labels, data ) {
     var ctx = document.getElementById(location).getContext('2d');
     var categoryCountCharts = new Chart(ctx, {
-        type: 'bar',
+        type: 'polarArea',
         data: {
             labels: labels,
             datasets: [{
@@ -62,14 +62,14 @@ function charts ( location, labels, data ) {
                 bodyFontSize: 14,
             },
             title: {
-                text: 'Product Distribution',
+                text: title,
                 display: true,
                 lineHeight: 2.5,
                 fontSize: 25,
                 fontColor: 'white',
             },
             legend: {
-                position: 'right',
+                // position: 'right',
                 labels: {
                     boxWidth: 50,
                     fontSize: 15,
@@ -77,19 +77,19 @@ function charts ( location, labels, data ) {
                     padding: 15,
                 }
             },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: 'white',
-                        beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        fontColor: 'white',
-                    }
-                }]
-            },
+            // scales: {
+            //     yAxes: [{
+            //         ticks: {
+            //             fontColor: 'white',
+            //             beginAtZero: true
+            //         }
+            //     }],
+            //     xAxes: [{
+            //         ticks: {
+            //             fontColor: 'white',
+            //         }
+            //     }]
+            // },
             
         }
     });
