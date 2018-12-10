@@ -4,9 +4,9 @@ import "app/common/litedb"
 
 type OrderEntry struct {
 	ID       int    `db:"OrderID"`
-	Products string `db:"ProductName"`
-	ItemID   int    `db:"ItemID"`
 	Date     string `db:"Order_Date"`
+	Product  string `db:"ProductName"`
+	ItemID   int    `db:"ItemID"`
 	Status   int    `db:"Order_Status"`
 	Quantity int    `db:"Order_Quantity"`
 }
@@ -39,6 +39,22 @@ func GetOrders() ([]OrderEntry, error) {
 		return orders, err
 	}
 	return orders, nil
+}
+
+func CreateOrder(status int, quantity int, date string) (int64, error) {
+	var err error
+	db, err := litedb.Connect()
+	defer db.Close()
+	if err != nil {
+		return 0, err
+	}
+
+	query := `INSERT INTO Orders (Order_Status, Order_Quantity, Order_Date) VALUES ($1, $2, $3)`
+	res, err := db.Exec(query, status, quantity, date)
+	if err != nil {
+		return 0, err
+	}
+	return res.LastInsertId()
 }
 
 func DeleteOrder(id int) error {

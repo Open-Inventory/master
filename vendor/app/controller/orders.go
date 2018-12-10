@@ -50,6 +50,29 @@ func GetOrders(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func CreateOrder(w http.ResponseWriter, r *http.Request) {
+	session := session.Instance(r)
+	if session.Values["id"] != nil {
+		queryValues := r.URL.Query()
+
+		status := queryValues.Get("status")
+		statusint, _ := strconv.Atoi(status)
+
+		quantity := queryValues.Get("quantity")
+		quantityint, _ := strconv.Atoi(quantity)
+
+		date := queryValues.Get("date")
+
+		_, err := model.CreateOrder(statusint, quantityint, date)
+		if err != nil {
+			log.Println("Unuccessfully created order: " + err.Error())
+			Error500(w, r)
+		} else {
+			log.Println("Successfully created item orderid")
+		}
+	}
+}
+
 func DeleteOrder(w http.ResponseWriter, r *http.Request) {
 	// Get session
 	session := session.Instance(r)

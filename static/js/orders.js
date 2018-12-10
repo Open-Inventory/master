@@ -1,10 +1,10 @@
 
-function format ( productArray ) {
-  let productRow='<table cellpadding="5" cellspacing="0" border="0" style="padding-left:500x;"><tr>';
-  for(var i=0; i < productArray.length; i++) {
-     productRow=productRow+`<tr><td>Product ${i+1}:</td><td>${productArray[i].Products}</td><td>ID: ${productArray[i].ItemID}</td>`;
+function format(productArray) {
+  let productRow = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:500x;"><tr>';
+  for (var i = 0; i < productArray.length; i++) {
+    productRow = productRow + `<tr><td>Product ${i + 1}:</td><td>${productArray[i].Product}</td><td>ID: ${productArray[i].ItemID}</td>`;
   }
-  return productRow+'</table> <meta http-equiv="refresh" content="1">';
+  return productRow + '</table> <meta http-equiv="refresh" content="1">';
 }
 
 
@@ -12,27 +12,27 @@ $(document).ready(function () {
   var table;
 
   $("#example").on("mousedown", "td .fas.fa-times", function (e) {
-    count=0;
+    count = 0;
     var ordArray = table.row($(this).closest("tr")).data()
-    table.row($(this).closest("tr")).remove().draw();    
+    table.row($(this).closest("tr")).remove().draw();
 
-    $.getJSON("/api/orders/delete?id=" + ordArray["ID"], function(response) {
-      window.location.reload(false);
+    $.getJSON("/api/orders/delete?id=" + ordArray["ID"], function (response) {
+      //window.location.reload(false);
     });
 
 
   })
 
   $('#example').on('mousedown', "td .fas.fa-plus", function () {
-    $(this).removeClass().addClass("fas fa-minus");    
+    $(this).removeClass().addClass("fas fa-minus");
     var tr = $(this).closest('tr');
-    var row = table.row( tr );
+    var row = table.row(tr);
 
     // Get the order quantities for each order
     var size = table.rows().count();
-    var length=orderList.length;
+    var length = orderList.length;
     var orderQuantities = [];
-    for (var i = 1; i <= orderList[length-1].ID; i++) {
+    for (var i = 1; i <= orderList[length - 1].ID; i++) {
       orderQuantities[i] = 0;
       for (var j = 0; j < length; j++) {
 
@@ -51,17 +51,17 @@ $(document).ready(function () {
       }
     }
 
-    
+
 
     //get current row index
-    for (var i = 0; i < size; i++) { 
+    for (var i = 0; i < size; i++) {
       if (table.row(i).data().ItemID == row.data().ItemID) {
         // console.log(i, " ", table.row(i).data());
         // console.log(row.data());
         currentIndex = i;
       }
     }
-    var nextrow = table.row ( currentIndex + 1 );
+    var nextrow = table.row(currentIndex + 1);
 
     // console.log("\nCurrent Row:",row.data());
     // console.log("Next Row:",nextrow.data());
@@ -74,16 +74,15 @@ $(document).ready(function () {
     // console.log(productArray);
 
     // Open this row
-    row.child( format(productArray) ).show();
+    row.child(format(productArray)).show();
     tr.addClass('shown');
-
   });
 
   $('#example').on('mousedown', "td .fas.fa-minus", function () {
     $(this).removeClass().addClass("fas fa-plus");
-  
+
     var tr = $(this).closest('tr');
-    var row = table.row( tr );
+    var row = table.row(tr);
 
     // This row is already open, close it
     row.child.hide();
@@ -121,17 +120,9 @@ $(document).ready(function () {
       $(this).html(txt);
     });
 
-    var order = {
-      ID: orderArray[0],
-      Quantity: orderArray[1],
-      Products: orderArray[2],
-      ItemID: orderArray[3],
-      Status: orderArray[4],
-    }
-
     // $.getJSON("/api/item?name=" + orderArray[0] + "&Products=" + item.Products + "&Status=" + order.Status, function (response) {
-      $.getJSON("/api/item?name=" + itemArray[0] + "&subtype=" + itemArray[1] + "&type=" + itemArray[2] + "&status=" + itemArray[3], function (response) {
-
+    $.getJSON("/api/orders/create?status=" + orderArray[1] + "&quantity=" + 0 + "&date=" + orderArray[2], function (response) {
+      //location.reload();
     });
   });
 
@@ -147,21 +138,21 @@ $(document).ready(function () {
   //var testdata = 'static/json/tabledata.json';
   table = $('#example').DataTable({
 
-  "rowCallback": function( row, data ) {
-    var multipleProducts = 0;
-    var dTable = table.data();
-    orderList.push(dTable[count]);
-    if(count != 0) {
-      if (dTable[count].ID == dTable[count-1].ID) {
-        multipleProducts = 1;
-        $(row).hide();
+    "rowCallback": function (row, data) {
+      var multipleProducts = 0;
+      var dTable = table.data();
+      orderList.push(dTable[count]);
+      if (count != 0) {
+        if (dTable[count].ID == dTable[count - 1].ID) {
+          multipleProducts = 1;
+          $(row).hide();
+        }
       }
-    }
-    count++;
-    if (count == table.data().count()) {
-      count =0;
-    }
-  },
+      count++;
+      if (count == table.data().count()) {
+        count = 0;
+      }
+    },
     stateSave: true,
     ajax: {
       "dataType": 'json',

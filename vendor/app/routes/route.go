@@ -117,6 +117,10 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.GetOrderQuantities)))
 
+	r.GET("/api/orders/create", hr.Handler(alice.
+		New().
+		ThenFunc(controller.CreateOrder)))
+
 	r.GET("/api/orders/delete", hr.Handler(alice.
 		New().
 		ThenFunc(controller.DeleteOrder)))
