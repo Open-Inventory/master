@@ -36,3 +36,16 @@ func GetOrders() ([]OrderEntry, error) {
 	}
 	return orders, nil
 }
+
+func DeleteOrder(id int) error {
+	var err error
+	db, err := litedb.Connect()
+	defer db.Close()
+	if err != nil {
+		return err
+	}
+
+	query := `DELETE FROM orders WHERE OrderID=$1;`
+	_ = db.MustExec(query, id)
+	return err
+}
