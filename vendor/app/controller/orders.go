@@ -69,3 +69,19 @@ func DeleteOrder(w http.ResponseWriter, r *http.Request) {
 		Error500(w, r)
 	}
 }
+
+func GetOrderQuantities(w http.ResponseWriter, r *http.Request) {
+	session := session.Instance(r)
+
+	if session.Values["id"] != nil {
+		response, err := model.OrderQuantities()
+		if err != nil {
+			log.Println("Error: " + err.Error())
+			Error500(w, r)
+		}
+		data, _ := json.Marshal(response)
+		w.Write(data)
+	} else {
+		Error500(w, r)
+	}
+}

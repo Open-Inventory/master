@@ -112,7 +112,11 @@ func routes() *httprouter.Router {
 	r.GET("/api/orders", hr.Handler(alice.
 		New(acl.DisallowAnon).
 		ThenFunc(controller.GetOrders)))
-	
+
+	r.GET("/api/orders/quantity", hr.Handler(alice.
+		New().
+		ThenFunc(controller.GetOrderQuantities)))
+
 	r.GET("/api/orders/delete", hr.Handler(alice.
 		New().
 		ThenFunc(controller.DeleteOrder)))
