@@ -61,9 +61,17 @@ func DeleteOrder(w http.ResponseWriter, r *http.Request) {
 
 		err := model.DeleteOrder(idint)
 		if err != nil {
-			log.Println("Unuccessfully deleted item")
+			log.Println("Unuccessfully deleted order")
+			Error500(w, r)
 		} else {
-			log.Println("Successfully deleted item")
+			log.Println("Successfully deleted order")
+			err := model.UpdateOrderIdTo0(idint)
+			if err != nil {
+				log.Println("Unuccessfully updated orderid")
+				Error500(w, r)
+			} else {
+				log.Println("Successfully deleted item orderid")
+			}
 		}
 	} else {
 		Error500(w, r)
