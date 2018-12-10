@@ -69,7 +69,6 @@ function charts ( title, location, labels, data ) {
                 fontColor: 'white',
             },
             legend: {
-                // position: 'right',
                 labels: {
                     boxWidth: 50,
                     fontSize: 15,
@@ -77,19 +76,18 @@ function charts ( title, location, labels, data ) {
                     padding: 15,
                 }
             },
-            // scales: {
-            //     yAxes: [{
-            //         ticks: {
-            //             fontColor: 'white',
-            //             beginAtZero: true
-            //         }
-            //     }],
-            //     xAxes: [{
-            //         ticks: {
-            //             fontColor: 'white',
-            //         }
-            //     }]
-            // },
+            scale: {
+                ticks: {
+                    min: 0,
+                    maxTicksLimit: 5,
+                    fontSize: 15,
+                    fontColor: 'white',
+                    showLabelBackdrop: false
+                },
+                gridLines: {
+                    lineWidth: 0.5
+                }
+            },
             
         }
     });
