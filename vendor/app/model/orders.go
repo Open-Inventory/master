@@ -63,7 +63,7 @@ func OrderQuantities() ([]OrderQuantity, error) {
 		return orders, err
 	}
 
-	query := `SELECT OrderID, COUNT(*) FROM Item WHERE OrderID<>0 GROUP BY OrderID`
+	query := `SELECT OrderID, COUNT(*) as quantity FROM Item WHERE OrderID<>0 GROUP BY OrderID`
 	err = db.Select(&orders, query)
 	if err != nil {
 		return orders, err
