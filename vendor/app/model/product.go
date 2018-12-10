@@ -50,7 +50,7 @@ func GetProductByType(name string) (Product, error) {
 		return product, err
 	}
 
-	query := `SELECT * FROM Product WHERE ProductName=$1 LIMIT 1`
+	query := `SELECT * FROM Product WHERE ProductName LIKE $1 LIMIT 1`
 	err = db.Select(&product, query, name)
 	if err != nil {
 		return product, err

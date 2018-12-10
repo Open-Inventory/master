@@ -55,7 +55,7 @@ func GetCategoryByType(catType string) (Category, error) {
 		return category, err
 	}
 
-	query := `SELECT * FROM Category WHERE CategoryType=$1 LIMIT 1`
+	query := `SELECT * FROM Category WHERE CategoryType LIKE $1 LIMIT 1`
 	err = db.Select(&category, query, catType)
 	if err != nil {
 		return category, err
@@ -104,7 +104,7 @@ func GetSubCategoryByType(subType string) (SubCategory, error) {
 		return subcategory, err
 	}
 
-	query := `SELECT * FROM SubCategory WHERE SubCategoryType=$1 LIMIT 1`
+	query := `SELECT * FROM SubCategory WHERE SubCategoryType LIKE $1 LIMIT 1`
 	err = db.Select(&subcategory, query, subType)
 	if err != nil {
 		return subcategory, err
