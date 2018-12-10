@@ -4,7 +4,7 @@ function format ( productArray ) {
   for(var i=0; i < productArray.length; i++) {
      productRow=productRow+`<tr><td>Product ${i+1}:</td><td>${productArray[i].Products}</td><td>ID: ${productArray[i].ItemID}</td>`;
   }
-  return productRow+'</table>';
+  return productRow+'</table> <meta http-equiv="refresh" content="1">';
 }
 
 
@@ -148,7 +148,6 @@ $(document).ready(function () {
   table = $('#example').DataTable({
 
   "rowCallback": function( row, data ) {
-    console.log(count);
     var multipleProducts = 0;
     var dTable = table.data();
     orderList.push(dTable[count]);
