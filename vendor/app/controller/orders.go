@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/josephspurrier/csrfbanana"
 )
@@ -47,4 +48,24 @@ func GetOrders(w http.ResponseWriter, r *http.Request) {
 		Error500(w, r)
 	}
 
+}
+
+func DeleteOrder(w http.ResponseWriter, r *http.Request) {
+	// Get session
+	session := session.Instance(r)
+	if session.Values["id"] != nil {
+		queryValues := r.URL.Query()
+
+		id := queryValues.Get("id")
+		idint, _ := strconv.Atoi(id)
+
+		err := model.DeleteOrder(idint)
+		if err != nil {
+			log.Println("Unuccessfully deleted item")
+		} else {
+			log.Println("Successfully deleted item")
+		}
+	} else {
+		Error500(w, r)
+	}
 }

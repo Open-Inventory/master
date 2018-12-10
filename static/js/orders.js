@@ -12,7 +12,15 @@ $(document).ready(function () {
   var table;
 
   $("#example").on("mousedown", "td .fas.fa-times", function (e) {
-    table.row($(this).closest("tr")).remove().draw();
+    count=0;
+    var ordArray = table.row($(this).closest("tr")).data()
+    table.row($(this).closest("tr")).remove().draw();    
+
+    $.getJSON("/api/orders/delete?id=" + ordArray["ID"], function(response) {
+      window.location.reload(false);
+    });
+
+
   })
 
   $('#example').on('mousedown', "td .fas.fa-plus", function () {
@@ -140,6 +148,7 @@ $(document).ready(function () {
   table = $('#example').DataTable({
 
   "rowCallback": function( row, data ) {
+    console.log(count);
     var multipleProducts = 0;
     var dTable = table.data();
     orderList.push(dTable[count]);
@@ -150,6 +159,9 @@ $(document).ready(function () {
       }
     }
     count++;
+    if (count == table.data().count()) {
+      count =0;
+    }
   },
     stateSave: true,
     ajax: {
