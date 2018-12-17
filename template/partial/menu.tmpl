@@ -1,13 +1,14 @@
 {{if eq .AuthLevel "auth"}}
 
 
-<a href="#" style="text-decoration: none"><h1 href="#">OPEN INVENTORY</h1></a>
+<a href="{{.BaseURI}}" style="text-decoration: none"><h1>OPEN INVENTORY</h1></a>
 
 	<div class="topnav">
-		<a class="button" href="{{.BaseURI}}inventory">INVENTORY</a>
-		<a class="button" href="#">SALES</a>
-		<a class="button" href="#">ORDERS</a>
-		<a class="button" href="{{.BaseURI}}test">TEST</a>
+		<a class="navlink" href="{{.BaseURI}}Inventory">INVENTORY</a>
+		<a class="navlink" href="{{.BaseURI}}orders">ORDERS</a>
+		<a class="navlink" href="{{.BaseURI}}sales">METRICS</a>
+		
+		<!-- <a class="navlink" href="{{.BaseURI}}test">TEST</a> -->
 		<!-- <div class="username" href=""  title="Username">HELLO USERNAME</div> -->
 		<div class="dropdown">
 				<a class="username" href=""  title="Username">HELLO, <br /> USERNAME</a>
@@ -19,7 +20,6 @@
 					</div>
 			</div>
 	</div>
-
 <!-- 
  <ul class="nav navbar-nav navbar-right">
   <li><a href="{{.BaseURI}}logout" style="color:white">Sign Out</a></li>

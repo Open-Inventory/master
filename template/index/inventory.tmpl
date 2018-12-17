@@ -1,50 +1,59 @@
 {{define "title"}}Open Inventory{{end}}
 {{define "head"}}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" src="/static/js/jquery.dataTables.js"></script> -->
+<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script data-require="datatables@*" data-semver="1.10.12" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">  
+  
 {{end}}
 {{define "content"}}
 
-<!-- <div> You're in! </div> -->
-
 <body>
-	<div class="dashboard">
-		<table id="table_id" class="display">
-			<thead>
-				<tr>
-					<th>Item</th>
-					<th>Category</th>
-					<th>Manufacturer</th>
-					<th>Location</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>RTX 2080ti</td>
-					<td>Graphics Card</td>
-					<td>Nvidia</td>
-					<td>36c</td>
-					<td>In Stock
-				</tr>
-				<tr>
-					<td>RTX 2080</td>
-					<td>Graphics Card</td>
-					<td>Nvidia</td>
-					<td>36d</td>
-					<td>In Stock
-				</tr>
-				<tr>
-					<td>RTX 2070</td>
-					<td>Graphics Card</td>
-					<td>Nvidia</td>
-					<td>36e</td>
-					<td>In Stock
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</body>
+		<div class="inventory" style="min-width: 1200px">
+				<div id="dash" class="dashboard-nav">
+						<span style="margin:0px; margin-left: 10px; color: white; letter-spacing: 2px">Inventory</span>
+				</div>
+				<div style="margin-right:25px; margin-left:25px">
+					<button class="button" id="addRow" style="cursor: pointer">New Item</button>
+					<table id="example" class="display" width="100%" cellspacing="0">
+						<thead>
+						  <tr>
+							<th style="width: 50px; max-width:400px">ItemID</th>
+							<th style="width: 300px; max-width:400px">Description</th>
+							<th style="width: 150px; max-width:200px">SubCategory</th>
+							<th style="width: 150px; max-width:200px">Category</th>
+							<th style="width: 25px">Item Status</th>
+							<th style="width: 25px">Order ID</th>
+							<th style="width: 150px">Updated On</th>>
+							<th style="width: 75px; max-width:75px">Action</th>
+						  </tr>
+						</thead>
+					  </table>
+					
+					  <table id="newRow" style="display:none">
+						<tbody>
+							<tr>
+								<td>_N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td><i class="far fa-edit" aria-hidden="true"></i>
+									<i class="fas fa-times" aria-hidden="true"></i> </td>
+							</tr>
+						</tbody>
+					  </table>
+					</div>
+				
+			</div>
+	
+  </body>
+
+	<div type="hidden" id="token" value="{{.token}}">
 
 {{end}}
 {{define "foot"}}

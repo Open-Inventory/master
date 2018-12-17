@@ -81,6 +81,50 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.InventoryGET)))
 
+	// Inventory retriever
+	r.GET("/api/inventory", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.GetInventory)))
+
+	// Inventory retriever
+	r.GET("/api/item", hr.Handler(alice.
+		New().
+		ThenFunc(controller.CreateItem)))
+
+	r.GET("/api/items", hr.Handler(alice.
+		New().
+		ThenFunc(controller.GetQuantities)))
+
+	r.GET("/api/item/delete", hr.Handler(alice.
+		New().
+		ThenFunc(controller.DeleteItem)))
+
+	// Sales Page
+	r.GET("/sales", hr.Handler(alice.
+		New().
+		ThenFunc(controller.SalesGET)))
+
+	// Orders Page
+	r.GET("/orders", hr.Handler(alice.
+		New().
+		ThenFunc(controller.OrdersGET)))
+
+	r.GET("/api/orders", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.GetOrders)))
+
+	r.GET("/api/orders/quantity", hr.Handler(alice.
+		New().
+		ThenFunc(controller.GetOrderQuantities)))
+
+	r.GET("/api/orders/create", hr.Handler(alice.
+		New().
+		ThenFunc(controller.CreateOrder)))
+
+	r.GET("/api/orders/delete", hr.Handler(alice.
+		New().
+		ThenFunc(controller.DeleteOrder)))
+
 	// Enable Pprof
 	r.GET("/debug/pprof/*pprof", hr.Handler(alice.
 		New(acl.DisallowAnon).

@@ -14,7 +14,7 @@ import (
 	"app/common/session"
 	"app/common/view"
 	"app/common/view/plugin"
-	"app/routes"
+	route "app/routes"
 )
 
 // *****************************************************************************
